@@ -14,7 +14,7 @@
         <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-content >
       <v-container>
       <nuxt></nuxt>
       </v-container>

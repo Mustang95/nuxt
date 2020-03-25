@@ -26,16 +26,23 @@
           <h2>Lista de Tarefas</h2>
           <p v-if="!tasks.length">Você não tem tarefas</p>
           <v-card class="mx-auto" max-width="auto" tile>
-            <v-list-item v-for="(task, index) in tasks" :key="index">
+              
+            <v-list-item
+              v-for="(task, index) in tasks"
+              :key="index"
+              tile="false"
+            >
               <v-list-item-content>
                 <v-list-item-title>{{ task.name }}</v-list-item-title>
                 <v-list-item-subtitle>{{
                   task.description
                 }}</v-list-item-subtitle>
+              <!-- <v-divider></v-divider> -->
               </v-list-item-content>
               <v-list-item-icon>
-                  <v-icon @click="onRemove(index)">email</v-icon>
-                </v-list-item-icon>
+                <v-icon @click="onRemove(index)">delete</v-icon>
+              </v-list-item-icon>
+              
             </v-list-item>
           </v-card>
         </v-col>
@@ -46,7 +53,7 @@
 <script>
 import Logo from "~/components/Logo.vue";
 import VuetifyLogo from "~/components/VuetifyLogo.vue";
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import "material-design-icons-iconfont/dist/material-design-icons.css";
 
 export default {
   components: {
