@@ -7,13 +7,13 @@
           <form action="">
             <v-text-field
               v-model="name"
-              :counter="10"
+              :counter="20"
               label="Nome da Tarefa"
               solo
             ></v-text-field>
             <v-text-field
               v-model="description"
-              :counter="10"
+              :counter="140"
               label="Descrição da Tarefa"
               solo
             ></v-text-field>
@@ -26,7 +26,6 @@
           <h2>Lista de Tarefas</h2>
           <p v-if="!tasks.length">Você não tem tarefas</p>
           <v-card class="mx-auto" max-width="auto" tile>
-              
             <v-list-item
               v-for="(task, index) in tasks"
               :key="index"
@@ -39,6 +38,9 @@
                 }}</v-list-item-subtitle>
               <!-- <v-divider></v-divider> -->
               </v-list-item-content>
+              <v-list-item-icon>
+                <v-icon @click="onDone(index)">done</v-icon> <!-- onDone(index) -->
+              </v-list-item-icon>
               <v-list-item-icon>
                 <v-icon @click="onRemove(index)">delete</v-icon>
               </v-list-item-icon>
@@ -79,11 +81,10 @@ export default {
       this.tasks.push(productTask);
     },
     onRemove(index) {
-      debugger;
       this.tasks.splice(index, 1);
     },
-    onDelete() {
-      debugger;
+    onDone() {
+      //this.taskscampleted.push(productTask);
     }
   }
 };
