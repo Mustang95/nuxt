@@ -90,7 +90,4 @@ export default {
 };
 </script>
 <style>
-.largeMargintop {
-  margin-top: 3rem;
-}
 </style>

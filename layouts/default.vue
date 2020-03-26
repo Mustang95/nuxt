@@ -7,12 +7,9 @@
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-      <!-- <v-btn icon @click="completed = true">
-        <v-icon>done_all</v-icon>
-      </v-btn> -->
-      <!-- <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn> -->
+      <v-btn icon to="/settings">
+        <v-icon>settings</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
@@ -32,11 +29,6 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-    </v-navigation-drawer>
-    <!-- 
-     -->
-         <v-navigation-drawer v-model="completed" absolute temporary :right="right">
-
     </v-navigation-drawer>
     <v-content>
       <v-container>
@@ -65,6 +57,11 @@ export default {
           icon: "mdi-chart-bubble",
           title: "Inspire",
           to: "/inspire"
+        },
+        {
+          icon: "settings",
+          title: "Settings",
+          to: "/settings"
         }
       ],
       taskscampleted: [],
@@ -76,3 +73,8 @@ export default {
   }
 };
 </script>
+<style>
+.largeMargintop {
+  margin-top: 3rem;
+}
+</style>
