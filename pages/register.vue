@@ -1,5 +1,5 @@
 <template>
-<v-layout
+  <v-layout
           align-center
           justify-center
         >
@@ -17,6 +17,12 @@
             prepend-icon="person"
             type="text"
           ></v-text-field>
+                   <v-text-field
+            label="Email"
+            name="email"
+            prepend-icon="email"
+            type="email"
+          ></v-text-field>
           <v-text-field
             id="password"
             label="Password"
@@ -24,12 +30,20 @@
             prepend-icon="lock"
             type="password"
           ></v-text-field>
+                    <v-text-field
+            id="password"
+            label="Confirm Password"
+            name="password"
+            prepend-icon="lock"
+            type="password"
+          ></v-text-field>
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="blue" to="/register">Sign Up</v-btn>
+        <v-btn color="red" to="/login">
+        <v-icon>chevron_left</v-icon>Back</v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="primary" to="/">Login
+        <v-btn color="success" to="/">Register
          <v-icon>chevron_right</v-icon>
         </v-btn>
       </v-card-actions>
@@ -37,7 +51,13 @@
   </v-flex>
   </v-layout>
 </template>
+
 <script>
-export default {};
+export default {
+
+}
 </script>
-<style></style>
+
+<style>
+
+</style>

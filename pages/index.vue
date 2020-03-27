@@ -1,5 +1,6 @@
 <template>
   <v-layout column justify-center align-center>
+    <navbar></navbar>
     <div class="largeMargintop"></div>
     <v-col>
       <v-row>
@@ -55,12 +56,13 @@
 <script>
 import Logo from "~/components/Logo.vue";
 import VuetifyLogo from "~/components/VuetifyLogo.vue";
-import "material-design-icons-iconfont/dist/material-design-icons.css";
+import navbar from "~/components/navbar.vue";
 
 export default {
   components: {
     Logo,
-    VuetifyLogo
+    VuetifyLogo,
+    navbar
   },
   data: () => ({
     name: "",

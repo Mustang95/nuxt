@@ -1,35 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar fixed>
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>Title</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn icon to="/settings">
-        <v-icon>settings</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
-      <v-list nav dense>
-        <v-list-item-group
-          active-class="deep-purple--text text--accent-4">
-          <v-list-item to="/">
-            <v-list-item-icon>
-              <v-icon>mdi-home</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item>
-          <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
     <v-content>
       <v-container>
         <nuxt></nuxt>
@@ -40,6 +10,7 @@
 </template>
 
 <script>
+import "material-design-icons-iconfont/dist/material-design-icons.css";
 export default {
   data() {
     return {
@@ -52,6 +23,11 @@ export default {
           icon: "mdi-apps",
           title: "Welcome",
           to: "/"
+        },
+        {
+          icon: "",
+          title: "Register",
+          to: "/register"
         },
         {
           icon: "mdi-chart-bubble",
