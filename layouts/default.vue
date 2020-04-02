@@ -37,7 +37,7 @@ export default {
         {
           icon: "settings",
           title: "Settings",
-          to: "/settings"
+          to: "/Settings"
         }
       ],
       taskscampleted: [],

@@ -1,65 +1,24 @@
 <template>
-  <v-layout column justify-center align-center>
+<v-container>
     <navbar></navbar>
-    <div class="largeMargintop"></div>
-    <v-col>
-      <v-row>
-        <v-col cols="4">
-          <form action="">
-            <v-text-field
-              v-model="name"
-              :counter="20"
-              label="Nome da Tarefa"
-              solo
-            ></v-text-field>
-            <v-text-field
-              v-model="description"
-              :counter="140"
-              label="Descrição da Tarefa"
-              solo
-            ></v-text-field>
-            <v-btn color="success" @click.prevent="onSubmit" class="mr-4 red"
-              >Gravar Tarefas</v-btn
-            >
-          </form>
-        </v-col>
-        <v-col cols="8">
-          <h2>Lista de Tarefas</h2>
-          <p v-if="!tasks.length">Você não tem tarefas</p>
-          <v-card class="mx-auto" max-width="auto" tile>
-            <v-list-item
-              v-for="(task, index) in tasks"
-              :key="index"
-              tile="false"
-            >
-              <v-list-item-content>
-                <v-list-item-title>{{ task.name }}</v-list-item-title>
-                <v-list-item-subtitle>{{
-                  task.description
-                }}</v-list-item-subtitle>
-              <!-- <v-divider></v-divider> -->
-              </v-list-item-content>
-              <v-list-item-icon>
-                <v-icon @click="onDone(index)">done</v-icon> <!-- onDone(index) -->
-              </v-list-item-icon>
-              <v-list-item-icon>
-                <v-icon @click="onRemove(index)">delete</v-icon>
-              </v-list-item-icon>
-              
-            </v-list-item>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-layout>
+    <Todo></Todo>
+</v-container>
 </template>
 <script>
+import Login from "~/components/Auth/Login.vue";
+import Signup from "~/components/Auth/Signup.vue";
+import Todo from "~/components/Todo.vue";
+import Lists from "~/components/Lists.vue";
 import Logo from "~/components/Logo.vue";
 import VuetifyLogo from "~/components/VuetifyLogo.vue";
 import navbar from "~/components/navbar.vue";
 
 export default {
   components: {
+    Login,
+    Signup,
+    Todo,
+    Lists,
     Logo,
     VuetifyLogo,
     navbar
@@ -91,5 +50,4 @@ export default {
   }
 };
 </script>
-<style>
-</style>
+<style></style>
