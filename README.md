@@ -7,6 +7,10 @@
 ```bash
 # install dependencies
 $ npm install
+# mock server
+$ npm install json-server
+# start mock server
+$ json-server db.json
 
 # serve with hot reload at localhost:3000
 $ npm run dev

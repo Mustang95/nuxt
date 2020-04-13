@@ -38,10 +38,10 @@
     <v-list style="height: calc(100% - 130px); overflow-y: scroll">
       <v-list-item-group>
 
-      <v-list-item @click.prevent="openList(list)"
-        v-for="(list, key) in lists"
-        v-bind:key="key"
-      > <!-- :to="{ name: 'tasks', params: { id: list.id} }" -->
+      <v-list-item
+      :to="{ name: 'tasks', params: { id: list.id} }"
+        v-for="list of lists"
+        v-bind:key="list.id">
         <v-list-item-content >
           <v-list-item-title>{{ list.title }}</v-list-item-title>
         </v-list-item-content>
@@ -58,16 +58,26 @@
 import SearchBar from "./SearchBar";
 import NewList from "./NewList";
 import { mapState, mapActions, mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
   name: "lists",
   components: { SearchBar, NewList },
-  data: () => ({}),
+  data () {
+    return {
+      lists: []
+    };
+  },
+  async created() {
+    try {
+      const res = await axios.get('http://localhost:3000/lists');
+      this.lists = res.data;
+    }catch(e){
+      console.error(e);
+    }
+  },
   computed: {
     ...mapGetters(["DISPLAY_SEARCH_LIST", 'CURATED_LISTS', 'DISPLAY_ADD_TASK']),
-    lists() {
-      return this.$store.state.lists
-    },
     openNewListFormValue: {
       get() {
         return this.$store.getters.NEW_LIST_FORM;

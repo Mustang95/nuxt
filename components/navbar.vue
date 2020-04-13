@@ -3,13 +3,6 @@
     <v-app-bar app clipped-left pb-0>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="title ml-3 mr-5">Title</v-toolbar-title>
-      <v-text-field
-        solo-inverted
-        flat
-        hide-details
-        label="Search"
-        prepend-inner-icon="search"
-      ></v-text-field>
       <v-spacer></v-spacer>
       <v-btn icon to="/settings">
         <v-icon>settings</v-icon>

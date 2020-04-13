@@ -1,0 +1,16 @@
+{
+    "lists": [
+      {
+        "id": 0,
+        "title": "Go to the gym"
+      },
+      {
+        "id": 1,
+        "title": "Walk the dog"
+      },
+      {
+        "id": 2,
+        "title": "Get some pizza"
+      }
+    ]
+  }
