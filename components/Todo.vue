@@ -1,11 +1,11 @@
 <template>
-  <div style="max-height: 80vh">
+  <div v-bind:style="{maxHeight: '96.3vh', height: '100%', backgroundSize: 'cover'}">
     <v-container fluid fill-height pr-0 pt-0 pl-0 pb-0>
       <v-layout row align-space-between justify-space-between>
-        <v-flex lg3 pr-1 style="max-height: 80vh">
+        <v-flex lg3 pr-1>
           <Lists />
         </v-flex>
-        <v-flex lg6 pr-2 pl-2 style="max-height: 80vh">
+        <v-flex lg6 pr-2 pl-2>
           <Tasks />
         </v-flex>
         <v-flex lg3 pr-2 pl-2>
@@ -13,13 +13,8 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <!-- <footer heigth="100%" color="indigo" pr-0 pt-0 pl-0 pb-0>
-      <v-layout justify-center>
-        <v-flex indigo white--text text-center>
-          &copy;2020 <strong>Luiz Roupinha</strong>
-        </v-flex>
-      </v-layout>
-    </footer> -->
+    <v-footer height="auto" color="indigo">
+    </v-footer>
   </div>
 </template>
 

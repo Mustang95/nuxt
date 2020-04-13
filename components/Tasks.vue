@@ -5,14 +5,13 @@
         <v-toolbar-title>
           Lista de tarefas
         </v-toolbar-title>
-
         <v-spacer></v-spacer>
         <v-btn icon>
           <v-icon>search</v-icon>
         </v-btn>
       </v-toolbar>
       <v-list two-line style="height: calc(100% - 124px); overflow-y: scroll">
-        <template v-for="(task, key) in tasks">
+        <template v-for="(task, key) in curatedLists">
           <Task v-bind:key="key" :task="task" :index="key" />
         </template>
       </v-list>
@@ -20,139 +19,42 @@
       <v-card-actions>
         <v-layout>
           <v-flex>
-            <NewTask></NewTask>
+            <NewTask v-if="DISPLAY_ADD_TASK"/>
           </v-flex>
         </v-layout>
       </v-card-actions>
     </v-card>
-    <NotesModal/>
+    <!-- <NotesModal /> -->
   </div>
 </template>
 
 <script>
+import NotesModal from "~/components/NotesModal.vue";
 import Task from "~/components/Task.vue";
 import NewTask from "~/components/NewTask.vue";
-import NotesModal from "~/components/NotesModal.vue";
+import { mapState, mapActions, mapGetters } from "vuex";
+
 export default {
   name: "tasks",
+  
   components: {
     Task,
     NewTask,
     NotesModal
   },
-  data: () => ({
-    tasks: [
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123"
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123"
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        subtitle: "teste 123"
-      },
-      {
-        id: 1,
-        title: "Schedule"
-      },
-      {
-        id: 1,
-        title: "Schedule"
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule"
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule"
-      },
-      {
-        id: 1,
-        title: "Schedule"
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule",
-        IsComplete: true
-      },
-      {
-        id: 1,
-        title: "Schedule"
-      }
-    ]
-  }),
-  methods: {
-    toggle(index) {
-      this.$store.dispatch("TOGGLE_TASK", {
-        taskId: this.task.id,
-        listId: this.$route.params.id
-      });
-      // TODO: push the changes to the store.
-    }
+  data: () => ({}),
+  computed: {
+    ...mapGetters(['DISPLAY_ADD_TASK']),
+    curatedLists() {
+      return this.$store.state.curatedLists;
+    },
+    //     TASKS () {
+    //       debugger
+    //   return this.$store.getters.TASKS(this.$route.params.id);
+    // }
+    // isOpen(){
+    //    return this.$store.state.openListValue;
+    // }
   }
 };
 </script>

@@ -24,119 +24,12 @@
             </v-list-item-icon>
             <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-          <v-list-item to="/inspire">
+          <v-list-item>
             <v-list-item-icon>
               <v-icon>done_all</v-icon>
             </v-list-item-icon>
             <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
-          </v-list-item>
-                    <v-list-item to="/inspire">
-            <v-list-item-icon>
-              <v-icon>done_all</v-icon>
-            </v-list-item-icon>
-            <v-list-item-title>Task Completes</v-list-item-title>
+            <HistoricTasks />
           </v-list-item>
         </v-list-item-group>
       </v-list>
@@ -145,42 +38,26 @@
 </template>
 
 <script>
+import HistoricTasks from "~/components/HistoricTasks.vue";
 export default {
-     data() {
+  name: "navbar",
+  components: {
+    HistoricTasks,
+  },
+  data() {
     return {
       completed: false,
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: "mdi-apps",
-          title: "Welcome",
-          to: "/"
-        },
-        {
-          icon: "",
-          title: "Register",
-          to: "/register"
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire"
-        },
-        {
-          icon: "settings",
-          title: "Settings",
-          to: "/settings"
-        }
-      ],
+      items: [],
       taskscampleted: [],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Vuetify.js"
+      title: "Vuetify.js",
     };
-  }
+  },
 };
 </script>
 

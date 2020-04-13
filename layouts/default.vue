@@ -2,10 +2,11 @@
   <v-app>
     <v-content>
       <v-container>
-        <nuxt></nuxt>
+        <nuxt>
+         
+        </nuxt>
       </v-container>
     </v-content>
-    <v-footer :fixed="fixed" app> </v-footer>
   </v-app>
 </template>
 
@@ -18,28 +19,7 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          icon: "mdi-apps",
-          title: "Welcome",
-          to: "/"
-        },
-        {
-          icon: "",
-          title: "Register",
-          to: "/register"
-        },
-        {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire"
-        },
-        {
-          icon: "settings",
-          title: "Settings",
-          to: "/Settings"
-        }
-      ],
+      items: [ ],
       taskscampleted: [],
       miniVariant: false,
       right: true,

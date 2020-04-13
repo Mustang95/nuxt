@@ -27,11 +27,9 @@
             ></v-text-field>
             <input type="file" style="display: none" ref="image" />
           </v-flex>
-          <v-btn>
-            Trocar pano de fundo
-            <v-icon right dark>cloud_upload</v-icon>
-          </v-btn>
-          <v-btn to="/login"
+          <h2>countador: {{ this.$store.state.counter }}</h2>
+          <v-btn @click="add_one"></v-btn>
+          <v-btn to="/"
             >Sair
             <v-icon right dark>exit_to_app</v-icon>
           </v-btn>
@@ -50,7 +48,13 @@ export default {
   },
   data: () => ({
     open: true
-  })
+  }),
+  methods: {
+    add_one() {
+      debugger
+      this.$store.commit("increment");
+    }
+  }
 };
 </script>
 

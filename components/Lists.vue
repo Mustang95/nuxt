@@ -8,14 +8,19 @@
     pb-0
   >
     <v-toolbar color="blue" dark>
-      <v-toolbar-title>Titulo</v-toolbar-title>
+      <v-toolbar-title v-if="!DISPLAY_SEARCH_LIST">Titulo</v-toolbar-title>
+      <SearchBar v-if="DISPLAY_SEARCH_LIST" />
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon @click.prevent="toggleSearchList()">
         <v-icon>search</v-icon>
       </v-btn>
     </v-toolbar>
     <v-list>
-      <v-list-item>
+      <v-list-item
+        color="blue"
+        @click.prevent="openNewListForm()"
+        v-if="!isOpen"
+      >
         <v-list-item-content>
           <v-list-item-title>Criar nova lista</v-list-item-title>
         </v-list-item-content>
@@ -25,113 +30,78 @@
           </v-list-item-title>
         </v-list-item-action>
       </v-list-item>
+      <v-list-item v-if="openNewListFormValue"> 
+        <NewList />
+      </v-list-item>
     </v-list>
     <v-divider></v-divider>
     <v-list style="height: calc(100% - 130px); overflow-y: scroll">
-      <v-list-item v-for="(list, key) in lists" v-bind:key="key">
-        <v-list-item-content>
+      <v-list-item-group>
+
+      <v-list-item @click.prevent="openList(list)"
+        v-for="(list, key) in lists"
+        v-bind:key="key"
+      > <!-- :to="{ name: 'tasks', params: { id: list.id} }" -->
+        <v-list-item-content >
           <v-list-item-title>{{ list.title }}</v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>
-          <v-list-item-title>{{ list.task }}</v-list-item-title>
+          <v-list-item-title>{{ list.id }}</v-list-item-title>
         </v-list-item-action>
       </v-list-item>
+      </v-list-item-group>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
+import SearchBar from "./SearchBar";
+import NewList from "./NewList";
+import { mapState, mapActions, mapGetters } from "vuex";
+
 export default {
   name: "lists",
-  data: () => ({
-    lists: [
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
+  components: { SearchBar, NewList },
+  data: () => ({}),
+  computed: {
+    ...mapGetters(["DISPLAY_SEARCH_LIST", 'CURATED_LISTS', 'DISPLAY_ADD_TASK']),
+    lists() {
+      return this.$store.state.lists
+    },
+    openNewListFormValue: {
+      get() {
+        return this.$store.getters.NEW_LIST_FORM;
       },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 0,
-        title: "AB",
-        task: "12"
-      },
-      {
-        id: 1,
-        title: "A",
-        task: "18"
-      },
-      {
-        id: 2,
-        title: "A",
-        task: "20"
+      set(value) {
+        this.$store.commit("SET_NEW_LIST_FORM", value);
       }
-    ]
-  })
+    },
+    isOpen() {
+      return this.$store.getters.NEW_LIST_FORM;
+    }
+  },
+  methods: {
+    toggleSearchList() {
+      this.$store.commit("SET_DISPLAY_SEARCH_LIST", !this.DISPLAY_SEARCH_LIST);
+    },
+    openNewListForm() {
+      this.$store.commit("SET_NEW_LIST_FORM", true);
+    },
+    openList(data){
+      debugger
+      this.$store.commit("SET_DISPLAY_ADD_TASK", true);
+      var count = this.$store.state.lists.length;
+      for(var i = 0; i < count; i++){
+        if(data.id == this.$store.state.lists[i].id){
+          
+          //var a = Object.assign(this.$store.state.lists[i], data);
+          //this.$store.state.lists[i] = a;
+          //debugger
+        }
+      }
+    },
+    ...mapActions(["getList"]),
+  }
 };
 </script>
 

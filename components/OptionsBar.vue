@@ -45,14 +45,6 @@
               <v-list-item-title class="danger">Remove list</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-
-          <v-list-item @click.prevent="openDrawer()">
-            <v-list-item-content>
-              <v-list-item-title class="danger"
-                >Change background</v-list-item-title
-              >
-            </v-list-item-content>
-          </v-list-item>
         </v-list-group>
       </v-list>
     </v-card>
@@ -108,7 +100,6 @@ export default {
   methods: {
     sort(value) {},
     filter(value) {},
-    openDrawer() {},
     removeList() {}
   }
 };
