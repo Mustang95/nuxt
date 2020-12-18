@@ -1,16 +1,55 @@
 {
-    "lists": [
-      {
-        "id": 0,
-        "title": "Go to the gym"
-      },
-      {
-        "id": 1,
-        "title": "Walk the dog"
-      },
-      {
-        "id": 2,
-        "title": "Get some pizza"
-      }
-    ]
-  }
+  "lists": [
+    {
+      "id": 0,
+      "title": "Go to the gym",
+      "tasks": [
+        {
+          "id": 11,
+          "title": "Biceps/Triceps Training"
+        },
+        {
+          "id": 12,
+          "title": "Cardio Training"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Walk the dog",
+      "tasks": []
+    },
+    {
+      "id": 2,
+      "title": "Get some pizza",
+      "tasks": [
+        {
+          "id": 11,
+          "title": "Pepperoni"
+        }
+      ]
+    },
+    {
+      "title": "market",
+      "id": 3
+    }
+  ],
+  "tasks": [
+    {
+      "id": 19,
+      "title": "Pepperoni"
+    },
+    {
+      "title": "Biceps/Triceps",
+      "id": 20
+    },
+    {
+      "title": "Feed the Dog",
+      "id": 21
+    },
+    {
+      "title": "rice",
+      "id": 22
+    }
+  ]
+}

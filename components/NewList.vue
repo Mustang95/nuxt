@@ -1,6 +1,10 @@
 <template>
-  <v-container pt-0 pr-0 pb-0 pl-0 style="width: 100%; overflow : hidden">
-    <v-form ref="form" @submit.prevent="sendData()" @keyup.enter="sendData">
+  <v-container px-0 py-0 style="width: 100%; overflow : hidden">
+    <v-form
+      ref="form"
+      @submit.prevent="addTodoList()"
+      @keyup.enter="addTodoList"
+    >
       <v-text-field
         pb-0
         @blur="closeForm()"
@@ -10,7 +14,7 @@
         clearable
         dense
         ref="input"
-        v-model="title"
+        v-model="list.listTitle"
         placeholder="Title"
         :rules="[rules.required]"
       ></v-text-field>
@@ -20,23 +24,43 @@
 
 <script>
 import { mapActions } from "vuex";
+import axios from "axios";
+const baseURL = "http://localhost:3000/lists";
 export default {
   data: () => ({
-    title: "",
+    list: { listTitle: "", tasks: {} },
     rules: {
       required: value => !!value || "Required"
     }
   }),
   methods: {
-    sendData() {
-      if (!this.title) {
-        return;
-      }
-      this.addTodo({ title: this.title, id: this.$store.state.counter}); //, id: this.$route.params.id 
-      this.$store.commit("increment");
-      this.title = "";
+    async addTodoList() {
+      const ctrl = this;
+      return new Promise((resolve, reject) => {
+        axios
+          .post(baseURL, { title: this.list.listTitle })
+          .then(({ data }) => {
+            ctrl.list = {};
+            ctrl.list[Symbol.iterator] = function*() {
+              data;
+            };
+            ctrl.listTitle = "";
+            this.$router.push({
+              name: "tasks",
+              params: {
+                id: data.id
+              }
+            });
+            ctrl.$store.commit("SET_NEW_LIST_FORM", false);
+            resolve(data);
+          })
+          .catch(error => {
+            debugger;
+            ctrl.listTitle = "";
+            reject(error);
+          });
+      });
     },
-    ...mapActions(["addTodo"]),
     closeForm() {
       this.$store.commit("SET_NEW_LIST_FORM", false);
     }

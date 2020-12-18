@@ -38,7 +38,7 @@
     <v-list style="height: calc(100% - 130px); overflow-y: scroll">
       <v-list-item-group>
 
-      <v-list-item
+      <v-list-item @click.prevent="openList()"
       :to="{ name: 'tasks', params: { id: list.id} }"
         v-for="list of lists"
         v-bind:key="list.id">
@@ -59,6 +59,7 @@ import SearchBar from "./SearchBar";
 import NewList from "./NewList";
 import { mapState, mapActions, mapGetters } from "vuex";
 import axios from "axios";
+const baseURL = 'http://localhost:3000/lists'
 
 export default {
   name: "lists",
@@ -70,7 +71,7 @@ export default {
   },
   async created() {
     try {
-      const res = await axios.get('http://localhost:3000/lists');
+      const res = await axios.get(baseURL);
       this.lists = res.data;
     }catch(e){
       console.error(e);
@@ -97,20 +98,10 @@ export default {
     openNewListForm() {
       this.$store.commit("SET_NEW_LIST_FORM", true);
     },
-    openList(data){
+    openList(){
       debugger
       this.$store.commit("SET_DISPLAY_ADD_TASK", true);
-      var count = this.$store.state.lists.length;
-      for(var i = 0; i < count; i++){
-        if(data.id == this.$store.state.lists[i].id){
-          
-          //var a = Object.assign(this.$store.state.lists[i], data);
-          //this.$store.state.lists[i] = a;
-          //debugger
-        }
-      }
     },
-    ...mapActions(["getList"]),
   }
 };
 </script>

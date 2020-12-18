@@ -6,19 +6,11 @@ export const strict = false;
 
 export const state = () => ({
   counter: 0,
-  lists: [],
-  curatedLists: [],
   displaySearchList: false,
   newListForm: false,
   openListValue: false
 });
 export const getters = {
-  LISTS: state => {
-    return state.lists;
-  },
-  CURATED_LISTS: (state, getters, rootState) => {
-      return state.curatedLists;
-  },
   NEW_LIST_FORM: state => {
     return state.newListForm;
   },
@@ -28,28 +20,12 @@ export const getters = {
   DISPLAY_ADD_TASK: state => {
     return state.openListValue;
   },
-  TASKS: state => index => {
-    debugger
-    if (index) {
-      return state.lists.find(list => list.id === index).curatedTasks;
-    }
-  },
 };
 
 export const mutations = {
   increment(state) {
     state.counter++;
   },
-  addTodo(state, data) {
-    state.lists = [...state.lists, data];
-  },
-  getList(state, data){
-debugger
-  },
-  addTask(state, data) {
-    state.curatedLists.push(data)
-  },
-
   SET_NOTIFICATION: (state, { display, text, alertClass }) => {
     state.notification.display = display;
     state.notification.text = text;
@@ -67,28 +43,4 @@ debugger
 };
 
 export const actions = {
-  addTodo: ({ commit }, data) => {
-    commit("addTodo", data);
-  },
-  addTask: ({ commit }, data) => {
-    debugger
-    commit("addTask", data);
-  },
-  getList: ({ commit }, data) => {
-    commit("getList", data);
-  },
-  fetchPosts ({ commit }) {
-    return client
-      .fetchPosts()
-      .then(posts => commit('setPosts', posts))
-  },
-  POST_TASK: async ({ commit }, { listId, taskTitle }) => {
-    let { data } = await axios.post(`/lists/${listId}/tasks`, {
-      title: taskTitle
-    });
-    commit("ADD_TASK", {
-      data,
-      listId
-    });
-  },
 };

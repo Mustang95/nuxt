@@ -1,7 +1,10 @@
 <template>
-  <v-list-item>
+  <v-list-item ripple >
     <v-list-item-action>
-      <NotesModal/>
+       <v-btn icon @click.stop="openModal()">
+        <v-icon color="pink">edit</v-icon>
+      </v-btn>
+      <!-- <NotesModal/> -->
       <!-- <v-btn icon>
         <v-icon>
           edit
@@ -11,18 +14,19 @@
     <v-list-item-content>
       <v-list-item-title>
         {{ task.title }}
-        <v-list-item-subtitle> {{ task.subtitle }} </v-list-item-subtitle>
+        <v-list-item-subtitle> {{ task.id }} </v-list-item-subtitle>
       </v-list-item-title>
     </v-list-item-content>
     <v-list-item-action-text>
-      <v-icon color="green" v-if="task.IsComplete">check_circle</v-icon>
-      <v-icon color="grey" v-else>check_circle</v-icon>
+      <v-icon :color="task.IsComplete ? 'green' : 'grey'">check_circle</v-icon>
+      <!-- <v-icon :color="grey" v-else>check_circle</v-icon> -->
     </v-list-item-action-text>
   </v-list-item>
 </template>
 
 <script>
 import NotesModal from '~/components/NotesModal'
+const baseURL = 'http://localhost:3000/tasks'
 export default {
   name: "task",
   components: {
@@ -37,8 +41,10 @@ export default {
   }),
   methods: {
     openModal() {
-      debugger
-      this.$parent.$emit("openModal", this.task.id);
+      this.$router.push({
+        name: "notes",
+        params: { taskId: this.task.id }
+      });
     }
   }
 };

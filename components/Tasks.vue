@@ -6,13 +6,14 @@
           Lista de tarefas
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon>
+        <v-btn @click.prevent="a()" icon>
           <v-icon>search</v-icon>
         </v-btn>
       </v-toolbar>
       <v-list two-line style="height: calc(100% - 124px); overflow-y: scroll">
-        <template v-for="(task, key) in curatedLists">
-          <Task v-bind:key="key" :task="task" :index="key" />
+        <template 
+        v-for="list of lists">
+          <Task v-bind:key="list.id" :task="list.tasks" :index="list.id" />
         </template>
       </v-list>
       <v-divider></v-divider>
@@ -33,28 +34,24 @@ import NotesModal from "~/components/NotesModal.vue";
 import Task from "~/components/Task.vue";
 import NewTask from "~/components/NewTask.vue";
 import { mapState, mapActions, mapGetters } from "vuex";
+import axios from "axios";
+const baseURL = 'http://localhost:3000/tasks'
 
 export default {
   name: "tasks",
-  
   components: {
     Task,
     NewTask,
     NotesModal
   },
-  data: () => ({}),
+   data () {
+    return {
+      lists: []
+    };
+  },
+  
   computed: {
     ...mapGetters(['DISPLAY_ADD_TASK']),
-    curatedLists() {
-      return this.$store.state.curatedLists;
-    },
-    //     TASKS () {
-    //       debugger
-    //   return this.$store.getters.TASKS(this.$route.params.id);
-    // }
-    // isOpen(){
-    //    return this.$store.state.openListValue;
-    // }
   }
 };
 </script>
